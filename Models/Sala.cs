@@ -30,5 +30,21 @@
             
             QuantidadeDeLugares= quantidade;
         }
+        public void TornarAtivo(bool status)
+        {
+            if (Status == false && status == true)
+            {
+                Status = status;
+            }
+            
+        }
+        public void TornarInativo(bool status)
+        {
+            if (Status == true && status == false)
+            {
+                Status = status;
+            }
+
+        }
     }
 }
