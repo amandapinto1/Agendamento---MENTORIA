@@ -2,12 +2,12 @@
 {
     public class Reserva : Entidade
     {
-        public string Titulo { get; set; }
-        public string Descricao { get; set; }
-        public DateTime Inicio{ get; set; }
-        public DateTime Fim { get; set; }
-        public Guid SalaId { get; set; }
-        public Guid UsuarioId { get; set; }
+        public string Titulo { get; private set; }
+        public string Descricao { get; private set; }
+        public DateTime Inicio{ get; private set; }
+        public DateTime Fim { get; private set; }
+        public Guid SalaId { get; private set; }
+        public Guid UsuarioId { get; private set; }
 
         public Reserva(string titulo, string descricao, DateTime inicio, DateTime fim, Guid salaid, Guid usuarioid)
         {
@@ -18,6 +18,12 @@
             SalaId = salaid;
             UsuarioId = usuarioid;
         }
+
+        private Reserva() { }
+
+        //EF RELATIONS
+        public Sala Sala { get; set; }
+        public Usuario Usuario { get; set; }
 
     }
 }

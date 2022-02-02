@@ -6,14 +6,19 @@
         public int QuantidadeDeLugares { get; set; }
         public int Andar { get; set; }
         public bool Status { get; set; }
-
+        public IReadOnlyCollection<Reserva> Reservas => _reservas;
+        public List<Reserva> _reservas;
         public Sala(string nome, int quantidadeDeLugares, int andar)
         {
             Nome = nome;
             QuantidadeDeLugares = quantidadeDeLugares;
             Andar = andar;
             Status = true;
+
+            _reservas = new List<Reserva>();
         }
+
+        private Sala() { }
 
         public void AlterarNome(string nome)
         {
@@ -30,21 +35,45 @@
             
             QuantidadeDeLugares= quantidade;
         }
-        public void TornarAtivo(bool status)
+        public void TornarAtivo()
         {
-            if (Status == false && status == true)
-            {
-                Status = status;
-            }
+            Status = true;
+            
             
         }
-        public void TornarInativo(bool status)
+        public void TornarInativo()
         {
-            if (Status == true && status == false)
-            {
-                Status = status;
-            }
+            Status = false;
+            
+        }
+        public bool ReservaExistente(Reserva reserva)
+        {
+            if (reserva != null) return _reservas.Any(x => x.Id == reserva.Id);
+            return false;
 
+        }
+
+        public void AdicionarReserva(Reserva reserva)
+        {
+            if (!ReservaExistente(reserva)) return;
+            _reservas.Add(reserva);
+        }
+
+        public void RemoverReserva(Reserva reserva)
+        {
+            if (!ReservaExistente(reserva)) return;
+
+            var reservaNaLista = _reservas.First(x => x.Id == reserva.Id);
+            _reservas.Remove(reservaNaLista);
+        }
+        public void EditarReserva(Reserva reserva)
+        {
+            if (!ReservaExistente(reserva)) return;
+
+            var reservaNaLista = _reservas.First(x => x.Id == reserva.Id);
+            _reservas.Remove(reservaNaLista);
+            _reservas.Add(reserva);
         }
     }
 }
+
