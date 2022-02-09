@@ -2,10 +2,10 @@
 {
     public class Sala : Entidade
     {
-        public string Nome { get; set; }
-        public int QuantidadeDeLugares { get; set; }
-        public int Andar { get; set; }
-        public bool Status { get; set; }
+        public string Nome { get; private set; }
+        public int QuantidadeDeLugares { get; private set; }
+        public int Andar { get; private set; }
+        public bool Status { get; private set; }
         public IReadOnlyCollection<Reserva> Reservas => _reservas;
         public List<Reserva> _reservas;
         public Sala(string nome, int quantidadeDeLugares, int andar)

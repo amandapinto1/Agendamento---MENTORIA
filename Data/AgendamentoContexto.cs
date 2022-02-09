@@ -1,5 +1,4 @@
-﻿using Agendamento.Data.Configuracoes;
-using Agendamento.Models;
+﻿using Agendamento.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Agendamento.Data
