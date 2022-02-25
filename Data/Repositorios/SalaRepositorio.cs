@@ -1,5 +1,6 @@
 ﻿using Agendamento.Data.Repositorios.Interfaces;
 using Agendamento.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Agendamento.Data.Repositorios
 {
@@ -18,18 +19,20 @@ namespace Agendamento.Data.Repositorios
 
         public void Atualizar(Sala sala)
         {
-            throw new NotImplementedException();
+            //_context.Salas.Update(sala);
+            _context.SaveChanges();
         }
 
-        public void Remover(Guid id)
-        {
-            throw new NotImplementedException();
+        public void Remover(Sala sala)
+        { 
+            _context.Salas.Remove(sala);
+            _context.SaveChanges();
 
         }
 
-        public IEnumerable<Sala> Buscar()
+        public List<Sala> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return _context.Salas.AsNoTracking().ToList();
         }
 
         public Sala BuscarPorId(Guid id)

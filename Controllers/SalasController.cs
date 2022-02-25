@@ -32,8 +32,56 @@ namespace Agendamento.Controllers
             { 
                 throw new Exception(ex.Message);
             }
-            
+        }
 
+        // Método indepotente
+        [HttpGet]
+        public IActionResult Buscar()
+        {
+            try
+            {
+
+                return Ok(_servicoSala.Buscar());
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult Atualizar([FromRoute] Guid id, [FromBody] AtualizarSalaRequest request)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest("Entidade Inválida");
+
+                _servicoSala.Editar(id, request);
+                    return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Remover([FromRoute] Guid id)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest("Entidade Inválida");
+
+                _servicoSala.Remover(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

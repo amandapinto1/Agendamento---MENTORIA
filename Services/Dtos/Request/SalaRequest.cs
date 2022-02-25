@@ -15,4 +15,13 @@ namespace Agendamento.Services.Dtos.Request
         [Range(1, 15, ErrorMessage = "O andar deve estar entre 1 e 15.")]
         public int Andar { get; set; }
     }
+    public class AtualizarSalaRequest
+    {
+        [Required(ErrorMessage = "Propriedade obrigatória.")]
+        [MaxLength(200, ErrorMessage = "Quantidade de caracteres inválida.")]
+        public string Nome { get; set; }
+
+        [Required(ErrorMessage = "Propriedade obrigatória.")]
+        public int QuantidadeDeLugares { get; set; }
+    }
 }
